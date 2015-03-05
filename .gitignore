@@ -1,2 +1,5 @@
 .module-cache
 .idea/
+/reactjs/flux/node_modules/
+/reactjs/js/bower_components/
+/public/js/app/build/.module_cache/
