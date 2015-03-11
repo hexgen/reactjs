@@ -18,6 +18,7 @@ NotFoundRoute = Router.NotFoundRoute;
 RouteHandler = Router.RouteHandler;
 Link = Router.Link;
 
+
 var App = React.createClass({
     getInitialState: function () {
         return {
@@ -50,11 +51,12 @@ var App = React.createClass({
 
     render: function () {
         var contacts = this.state.contacts.map(function (contact) {
-            return <li key={contact.id}><Link to="contact" params={contact}>{contact.first}</Link></li>;
+            return <li key={contact.id}><Link to="contact" params={contact}>{contact.first} {contact.last}</Link></li>;
         });
         return (
             <div className="App">
                 <div className="ContactList">
+                    <Link to="/">Index</Link>
                     <Link to="new">New Contact</Link>
                     <ul>
             {contacts}
@@ -165,7 +167,7 @@ var NotFound = React.createClass({
 });
 
 var routes = (
-    <Route handler={App}>
+    <Route name="root" path="/" handler={App}>
         <DefaultRoute handler={Index}/>
         <Route name="new" path="contact/new" handler={NewContact}/>
         <Route name="contact" path="contact/:id" handler={Contact}/>

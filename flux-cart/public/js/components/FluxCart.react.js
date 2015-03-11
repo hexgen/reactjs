@@ -32,7 +32,7 @@ var FluxCart = React.createClass({
                 <div className="mini-cart">
                     <button type="button" className="close-cart" onClick={this.closeCart}>×</button>
                     <ul>
-            {Object.keys(products).map(function (product) {
+                        {Object.keys(products).map(function (product) {
                 return (
                     <li key={product}>
                         <h1 className="name">{products[product].name}</h1>
