@@ -12,7 +12,7 @@ function getListItem(item) {
     return (
         <ListItem
             key={item.id}
-            message={item}
+            item={item}
         />
     );
 }
@@ -28,10 +28,12 @@ var Lead = React.createClass({
         return this.getStateFromStores();
     },
     getStateFromStores: function () {
-        console.log('12321312323',this.getStore(ListStore).getAll());
+        console.log('1.4',this.getStore(ListStore).getAll());
+        var items = [{'id':3,'title':'lead3'},{'id':4,'title':'lead4'}];
+        this.setState({items:items});
         return {
             //items: this.getStore(ListStore).getAll()
-            items: [{'id':3,'title':'lead3'},{'id':4,'title':'lead4'}]
+            items: items
         };
     },
     render: function () {

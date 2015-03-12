@@ -25,7 +25,7 @@ var ListItem = React.createClass({
     },
 
     render: function() {
-        var item = this.props.message;
+        var item = this.props.item;
         return (
             <li className="message-list-item">
                 <div className="message-text">{item.title}</div>
