@@ -4,11 +4,13 @@ var DefaultRoute = require('react-router').DefaultRoute;
 var Application = require('./Application.jsx');
 var Home = require('./Home.jsx');
 var About = require('./About.jsx');
+var Lead = require('./Lead.jsx');
 
 var routes = (
     <Route name="app" path="/" handler={Application}>
-        <Route name="about" handler={About}/>
         <DefaultRoute name="home" handler={Home}/>
+        <Route name="lead" handler={Lead}/>
+        <Route name="about" handler={About}/>
     </Route>
 );
 

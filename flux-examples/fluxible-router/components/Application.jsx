@@ -6,6 +6,7 @@
 var React = require('react');
 var Nav = require('./Nav.jsx');
 var Home = require('./Home.jsx');
+var Lead = require('./Lead.jsx');
 var About = require('./About.jsx');
 var Page = require('./Page.jsx');
 var Timestamp = require('./Timestamp.jsx');
@@ -34,6 +35,9 @@ var Application = React.createClass({
                 break;
             case 'about':
                 output = <About/>;
+                break;
+            case 'lead':
+                output = <Lead/>;
                 break;
             case 'page':
                 output = <Page context={this.props.context}/>;

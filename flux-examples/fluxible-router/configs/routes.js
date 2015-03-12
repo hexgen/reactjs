@@ -9,6 +9,16 @@ module.exports = {
             done();
         }
     },
+    lead: {
+        path: '/lead',
+        method: 'get',
+        page: 'lead',
+        label: 'Lead',
+        action: function (context, payload, done) {
+            context.dispatch('UPDATE_PAGE_TITLE', { pageTitle: 'Lead | flux-examples | routing' });
+            done();
+        }
+    },
     about: {
         path: '/about',
         method: 'get',
