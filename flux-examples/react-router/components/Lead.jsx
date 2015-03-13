@@ -6,6 +6,7 @@
 var React = require('react');
 var ListStore = require('../stores/ListStore');
 var ListItem = require('./ListItem.jsx');
+var loadList = require('../actions/loadList');
 var FluxibleMixin = require('fluxible').Mixin;
 
 function getListItem(item) {
@@ -28,22 +29,23 @@ var Lead = React.createClass({
         return this.getStateFromStores();
     },
     getStateFromStores: function () {
-        console.log('1.4',this.getStore(ListStore).getAll());
-        var items = [{'id':3,'title':'lead3'},{'id':4,'title':'lead4'}];
-        this.setState({items:items});
         return {
-            //items: this.getStore(ListStore).getAll()
-            items: items
+            items: this.getStore(ListStore).getAll()
         };
     },
+    loadLeads: function (event) {
+        //var checked = event.target.checked;
+        this.executeAction(loadList);
+    },
     render: function () {
-        //var listItems = this.state.messages.map(getListItem);
-        var Leads = this.state.items.map(getListItem);
-        //var Leads = [{'id':1,'title':'lead1'},{'id':2,'title':'lead2'}];
-        var listItems = Leads.map(getListItem);
+        //console.log('On render state = ', this.state.items.map);
+        var listItems = this.state.items.map(getListItem);
         return (
             <div className="message-section">
                 <h3 className="message-thread-heading">Leads list</h3>
+                <a href="#" onClick={this.loadLeads}>
+                    Load Leads from db
+                </a>
                 <ul className="message-list" ref="messageList">
                 </ul>
                 {listItems}
@@ -51,6 +53,7 @@ var Lead = React.createClass({
         );
     },
     _onChange: function () {
+        console.log('On Change');
         this.setState(this.getStateFromStores());
     }
 });

@@ -8,18 +8,22 @@ var createStore = require('fluxible/utils/createStore');
 var ListStore = createStore({
     storeName: 'ListStore',
     handlers: {
-        'RECEIVE_MESSAGES': 'receiveMessages',
-        'OPEN_THREAD': 'openThread'
+        'RECEIVE_LIST_SUCCESS': '_receiveList'
     },
     initialize: function () {
-        this.items = {};
+        this.items = [];
+        //this.items = [{'id':3,'title':'lead3'},{'id':4,'title':'lead4'}];
     },
-    receiveMessages: function (items) {
-        var self = this;
-        items.forEach(function (item) {
-            self.items[item.id] = item;
-        });
-        self.emitChange();
+    //receiveMessages: function (items) {
+    //    var self = this;
+    //    items.forEach(function (item) {
+    //        self.items[item.id] = item;
+    //    });
+    //    self.emitChange();
+    //},
+    _receiveList: function (items) {
+        this.items = items;
+        this.emitChange();
     },
     getAll: function () {
         return this.items;
