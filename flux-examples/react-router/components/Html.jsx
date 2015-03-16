@@ -4,6 +4,8 @@
  */
 'use strict';
 var React = require('react');
+var ApplicationStore = require('../stores/ApplicationStore');
+var FluxibleMixin = require('fluxible').Mixin;
 
 /**
  * React class to handle the rendering of the HTML head section
@@ -12,6 +14,10 @@ var React = require('react');
  * @constructor
  */
 var Html = React.createClass({
+    mixins: [FluxibleMixin],
+    statics: {
+        storeListeners: [ApplicationStore]
+    },
     /**
      * Refer to React documentation render
      *
@@ -34,6 +40,10 @@ var Html = React.createClass({
             <script src="/public/js/client.js" defer></script>
             </html>
         );
+    },
+    onChange: function () {
+        var state = this.getStore(ApplicationStore).getState();
+        this.setState(state);
     }
 });
 

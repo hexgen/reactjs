@@ -11,19 +11,14 @@ var FluxibleMixin = require('fluxible').Mixin;
 
 function getListItem(item) {
     return (
-        <ListItem
-            key={item.id}
-            item={item}
-        />
+        <ListItem key={item._id} item={item} />
     );
 }
 
 var Lead = React.createClass({
     mixins: [FluxibleMixin],
     statics: {
-        storeListeners: {
-            _onChange: [ListStore]
-        }
+        storeListeners: [ListStore]
     },
     getInitialState: function () {
         return this.getStateFromStores();
@@ -33,13 +28,21 @@ var Lead = React.createClass({
             items: this.getStore(ListStore).getAll()
         };
     },
+    componentDidMount: function()
+    {
+        this.executeAction(loadList);
+    },
     loadLeads: function (event) {
         //var checked = event.target.checked;
         this.executeAction(loadList);
     },
     render: function () {
-        //console.log('On render state = ', this.state.items.map);
-        var listItems = this.state.items.map(getListItem);
+        //console.log('render', this.state.items);
+        var listItems = '';
+        //if ( this.state.items !== null )
+        //{
+            listItems = this.state.items.map(getListItem);
+        //}
         return (
             <div className="message-section">
                 <h3 className="message-thread-heading">Leads list</h3>
@@ -47,13 +50,13 @@ var Lead = React.createClass({
                     Load Leads from db
                 </a>
                 <ul className="message-list" ref="messageList">
+                    {listItems}
                 </ul>
-                {listItems}
             </div>
         );
     },
-    _onChange: function () {
-        console.log('On Change');
+    onChange: function () {
+        //console.log('On Change');
         this.setState(this.getStateFromStores());
     }
 });

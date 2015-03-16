@@ -11,14 +11,15 @@ var TimeStore = createStore({
     initialize: function () {
         this.time = new Date();
     },
-    handleTimeChange: function (payload) {
-        this.time = new Date();
-        this.emitChange();
-    },
     handlers: {
         'CHANGE_ROUTE': 'handleTimeChange',
         'UPDATE_TIME': 'handleTimeChange'
     },
+    handleTimeChange: function (payload) {
+        this.time = new Date();
+        this.emitChange();
+    },
+
     getState: function () {
         return {
             time: this.time.toString()

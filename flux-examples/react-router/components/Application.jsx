@@ -27,7 +27,7 @@ var Application = React.createClass({
         return (
             <div>
                 <Nav />
-                    <RouteHandler />
+                <RouteHandler />
                 <Timestamp />
             </div>
         );

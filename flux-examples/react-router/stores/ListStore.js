@@ -12,7 +12,6 @@ var ListStore = createStore({
     },
     initialize: function () {
         this.items = [];
-        //this.items = [{'id':3,'title':'lead3'},{'id':4,'title':'lead4'}];
     },
     //receiveMessages: function (items) {
     //    var self = this;

@@ -7,19 +7,27 @@ var createStore = require('fluxible/utils/createStore');
 
 var PageStore = createStore({
     storeName: 'PageStore',
+    handlers: {
+        'LOAD_PAGE': 'handleContentChange',
+        'UPDATE_PAGE_TITLE': 'updatePageTitle'
+    },
     initialize: function () {
         this.content = 'initial content...';
+        this.pageTitle = '';
     },
     handleContentChange: function (payload) {
         this.content = 'content for page with id '+payload.id;
+        this.pageTitle = title;
         this.emitChange();
     },
-    handlers: {
-        'LOAD_PAGE': 'handleContentChange'
+    updatePageTitle: function (title) {
+        this.pageTitle = title;
+        this.emitChange();
     },
     getState: function () {
         return {
-            content: this.content
+            content: this.content,
+            pageTitle: this.pageTitle
         };
     },
     dehydrate: function () {
@@ -27,6 +35,7 @@ var PageStore = createStore({
     },
     rehydrate: function (state) {
         this.content = state.content;
+        this.pageTitle = state.pageTitle;
     }
 });
 
